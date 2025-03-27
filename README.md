@@ -252,7 +252,6 @@ Permission is hereby granted... [include full license text]
 ## Support and Contact
 
 For support, questions, or security disclosures:
-- Email: security@xtawb.io
 - GitHub Issues: https://github.com/xtawb/Anomalyze/issues
 - Documentation: https://anomalyze.readthedocs.io
 
