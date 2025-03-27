@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8%2B-blue" alt="Python Version">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/Version-1.0-red" alt="Version">
+  <img src="https://img.shields.io/badge/Version-1.0.0-red" alt="Version">
   <img src="https://img.shields.io/github/issues-closed/xtawb/Anomalyze">
 </p>
 
