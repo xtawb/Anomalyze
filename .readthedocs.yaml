@@ -4,10 +4,9 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
-
-mkdocs:
-  configuration: mkdocs.yml
-  fail_on_warning: true 
+  jobs:
+    post_install:
+      - pip install mkdocs-material mkdocs-redirects
 
 python:
   install:
@@ -15,11 +14,10 @@ python:
       path: .
       extra_requirements: [docs]
 
+mkdocs:
+  configuration: mkdocs.yml
+  fail_on_warning: true
+
 formats:
   - pdf
   - epub
-
-build:
-  jobs:
-    post_install:
-      - pip install mkdocs-material mkdocs-redirects
