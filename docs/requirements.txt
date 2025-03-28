@@ -7,7 +7,7 @@ mkdocs-git-revision-date-localized-plugin>=1.2.0
 mkdocs-minify-plugin>=0.7.0
 mkdocs-macros-plugin>=1.0.0
 mkdocs-mermaid2-plugin>=0.7.0
-mkdocs-markdownextradata-plugin>=0.3.0
+mkdocs-markdownextradata-plugin>=0.2.6
 
 # Markdown Extensions
 pygments>=2.15.0
