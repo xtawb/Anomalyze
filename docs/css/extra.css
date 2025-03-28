@@ -1,0 +1,346 @@
+/* Anomalyze Documentation Styles v1.0 - August 2025 */
+/* Security-focused enhancements with responsive design */
+
+:root {
+    /* Primary color palette */
+    --anomalyze-primary: #6e40c9;
+    --anomalyze-primary-dark: #4a3b8a;
+    --anomalyze-accent: #ff5e5e;
+    --anomalyze-accent-dark: #cc4b4b;
+    
+    /* Security severity colors */
+    --severity-critical: #ff5e5e;
+    --severity-high: #ff9a3e;
+    --severity-medium: #ffcc3e;
+    --severity-low: #5ec7ff;
+    --severity-info: #8a8aff;
+    
+    /* Terminal colors */
+    --terminal-bg: #1e1e1e;
+    --terminal-text: #d4d4d4;
+    --terminal-prompt: #4ec9b0;
+    --terminal-command: #9cdcfe;
+    --terminal-output: #ce9178;
+}
+
+/* ======================
+   Base Enhancements 
+   ====================== */
+
+.md-typeset {
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.md-typeset h1, 
+.md-typeset h2 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--anomalyze-primary-dark);
+}
+
+.md-typeset h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.3em;
+}
+
+/* ======================
+   Code & Syntax Highlighting 
+   ====================== */
+
+.md-typeset pre > code {
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--anomalyze-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--md-code-bg-color);
+    padding: 1em;
+}
+
+.md-typeset code {
+    font-family: "Fira Code", monospace;
+    font-size: 0.85em;
+}
+
+/* CLI command blocks */
+.cli-command {
+    font-family: "Fira Code", monospace;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    padding: 0.75em 1em;
+    border-radius: 0.5rem;
+    display: block;
+    position: relative;
+    margin: 1em 0;
+    overflow-x: auto;
+}
+
+.cli-command::before {
+    content: "$";
+    color: var(--terminal-prompt);
+    margin-right: 0.5em;
+}
+
+/* ======================
+   Security Components 
+   ====================== */
+
+/* Security advisories */
+.security-advisory {
+    border-left: 4px solid var(--severity-critical);
+    background-color: rgba(255, 94, 94, 0.08);
+    padding: 1em;
+    margin: 1.5em 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.security-advisory.critical { border-color: var(--severity-critical); }
+.security-advisory.high { border-color: var(--severity-high); }
+.security-advisory.medium { border-color: var(--severity-medium); }
+.security-advisory.low { border-color: var(--severity-low); }
+
+.security-advisory .admonition-title {
+    background-color: transparent;
+    font-weight: 600;
+    padding-left: 0;
+}
+
+.security-advisory.critical .admonition-title::before {
+    background-color: var(--severity-critical);
+}
+
+/* Threat model diagrams */
+.threat-model-container {
+    margin: 2em 0;
+    padding: 1em;
+    background-color: rgba(110, 64, 201, 0.05);
+    border-radius: 0.5rem;
+}
+
+/* ======================
+   Interactive Elements 
+   ====================== */
+
+/* Copy buttons */
+.copy-btn {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background: rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 4px;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+pre:hover .copy-btn,
+.cli-command:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+/* Tabs */
+.md-typeset .tabbed-set > input:checked + label {
+    border-bottom-color: var(--anomalyze-primary);
+    color: var(--anomalyze-primary);
+}
+
+/* ======================
+   API Documentation 
+   ====================== */
+
+.api-endpoint {
+    font-family: "Fira Code", monospace;
+    background-color: #f5f5f5;
+    padding: 1em;
+    border-radius: 4px;
+    margin: 1em 0;
+    position: relative;
+}
+
+.api-endpoint.get { border-left: 4px solid #61affe; }
+.api-endpoint.post { border-left: 4px solid #49cc90; }
+.api-endpoint.put { border-left: 4px solid #fca130; }
+.api-endpoint.delete { border-left: 4px solid #f93e3e; }
+.api-endpoint.patch { border-left: 4px solid #50e3c2; }
+
+.api-method {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    border-radius: 3px;
+    font-weight: 600;
+    color: white;
+    margin-right: 0.5em;
+}
+
+.api-method.get { background-color: #61affe; }
+.api-method.post { background-color: #49cc90; }
+.api-method.put { background-color: #fca130; }
+.api-method.delete { background-color: #f93e3e; }
+.api-method.patch { background-color: #50e3c2; }
+
+/* ======================
+   Terminal Output 
+   ====================== */
+
+.terminal-output {
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    padding: 1em;
+    border-radius: 4px;
+    font-family: "Fira Code", monospace;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.command-line {
+    color: var(--terminal-prompt);
+    margin-bottom: 0.5em;
+}
+
+.command-line::before {
+    content: "$ ";
+}
+
+.command-output {
+    color: var(--terminal-output);
+    white-space: pre-wrap;
+}
+
+/* ======================
+   Diagrams & Charts 
+   ====================== */
+
+.mermaid, .anomalyze-chart {
+    background: var(--md-code-bg-color);
+    border-radius: 0.5rem;
+    padding: 1em;
+    margin: 1em 0;
+    text-align: center;
+}
+
+/* ======================
+   Responsive Design 
+   ====================== */
+
+@media screen and (max-width: 76.1875em) {
+    .md-nav--primary .md-nav__title {
+        background-color: var(--anomalyze-primary);
+        color: white;
+    }
+    
+    .md-typeset h1 {
+        font-size: 1.6rem;
+    }
+    
+    .md-typeset h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ======================
+   Dark Mode Adjustments 
+   ====================== */
+
+[data-md-color-scheme="slate"] {
+    --terminal-bg: #2d2d2d;
+    --terminal-text: #f8f8f2;
+    
+    .api-endpoint {
+        background-color: rgba(30, 30, 30, 0.5);
+    }
+    
+    .security-advisory {
+        background-color: rgba(255, 94, 94, 0.15);
+    }
+}
+
+/* ======================
+   Utility Classes 
+   ====================== */
+
+.text-critical { color: var(--severity-critical); }
+.text-high { color: var(--severity-high); }
+.text-medium { color: var(--severity-medium); }
+.text-low { color: var(--severity-low); }
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.badge-critical { background-color: var(--severity-critical); color: white; }
+.badge-high { background-color: var(--severity-high); color: black; }
+.badge-medium { background-color: var(--severity-medium); color: black; }
+.badge-low { background-color: var(--severity-low); color: black; }
+
+/* ======================
+   Enhanced Logo Styling 
+   ====================== */
+
+/* Header logo container adjustments */
+.md-header__button.md-logo {
+    padding: 0.3rem 0;  /* Increased vertical padding */
+    margin-right: 0.2rem;  /* Better spacing */
+}
+
+/* Logo image styling */
+.md-header__button.md-logo img, 
+.md-header__button.md-logo svg {
+    height: 3rem;  /* Increased from 2.8rem to 3rem */
+    width: auto;
+    margin-top: 0.4rem;  /* Positive value to push down */
+    margin-right: 0.6rem;  /* Slightly increased */
+    transform: translateY(5px);  /* Explicit downward shift */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smoother animation */
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));  /* Subtle shadow */
+}
+
+/* Title spacing adjustments */
+.md-header__title {
+    margin-left: 0.8rem;  /* Increased from 0.5rem */
+    padding-bottom: 0.3rem;  /* Better vertical alignment */
+    transition: all 0.3s ease;  /* Smooth transition */
+}
+
+/* Hover effects */
+.md-header__button.md-logo:hover img {
+    transform: translateY(5px) scale(1.07);  /* Combined transformations */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)) brightness(1.02);  /* Enhanced hover effect */
+}
+
+/* Dark mode refinements */
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+    filter: brightness(0.92) drop-shadow(0 1px 2px rgba(0,0,0,0.2));  /* Dark mode adjustments */
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 76.1875em) {
+    .md-header__button.md-logo {
+        padding: 0.25rem 0;
+    }
+    
+    .md-header__button.md-logo img {
+        height: 2.5rem;  /* Increased from 2rem to 2.5rem */
+        margin-top: 0.3rem;
+        transform: translateY(4px);
+    }
+    
+    .md-header__title {
+        margin-left: 0.6rem;
+        font-size: 1.1rem;  /* Better mobile title size */
+    }
+}
+
+/* Smooth transition for header elements */
+.md-header {
+    transition: all 0.3s ease;
+}

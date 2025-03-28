@@ -1,0 +1,163 @@
+# Anomalyze Documentation Configuration
+# Version 1.0 - Mars 2025 (Complete Structure)
+
+### Core Site Configuration ###
+site_name: Anomalyze Documentation
+site_url: https://docs.anomalyze.org
+site_description: >
+  Advanced anomaly detection system documentation
+site_author: Anomalyze Security Team
+copyright: "Copyright &copy; 2025 Anomalyze Project"
+
+### Repository Settings ###
+repo_name: GitHub
+repo_url: https://github.com/xtawb/Anomalyze
+edit_uri: edit/main/docs/
+
+### Material Theme Configuration ###
+theme:
+  name: material
+  language: en
+  logo: https://i.ibb.co/xS2vdM5q/2-logo.png
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.sections
+    - navigation.expand
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - navigation.footer
+  
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+  
+  font:
+    text: Roboto
+    code: Fira Code
+  
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/shield-alert 
+    
+### Complete Navigation Structure ###
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Basic Usage: usage.md
+  - Examples:
+    - Basic Examples: examples.md
+    - Advanced Examples: advanced/examples.md
+  - Development:
+    - System Architecture: development/architecture.md
+    - Contributing Guide: development/contributing.md
+    - Code of Conduct: development/CODE_OF_CONDUCT.md
+  - Advanced:
+    - Advanced Options: advanced_options.md
+  - Output Formats: output.md
+  - Support: support.md
+  - License: license.md
+  - Code of Conduct: CODE_OF_CONDUCT.md
+### Plugins Configuration ###
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-\.]+'
+  - git-revision-date-localized:
+      type: timeago
+      fallback_to_build_date: true
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+  - macros
+  - mermaid2:
+      javascript: https://cdn.jsdelivr.net/npm/mermaid@10.2.4/dist/mermaid.min.js
+      arguments:
+        theme: dark
+        themeVariables:
+          primaryColor: '#4a148c'
+          secondaryColor: '#6a1b9a'
+          nodeBorder: '#6e40c9'
+          fontFamily: 'Fira Code'
+  - markdownextradata
+
+### Markdown Extensions ###
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+      permalink_title: "Permalink"
+      baselevel: 2
+      separator: "-"
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols
+
+### Extra Configuration ###
+extra:
+  analytics:
+    provider: google
+    property: UA-XXXXXXXXX-X
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xtawb/Anomalyze
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/UMExDCTp9f
+  security:
+    contact: xxtawb@gmail.com
+
+### Assets Configuration ###
+extra_css:
+  - css/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css
+
+extra_javascript:
+  - js/extra.js
+  - https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js
+
+### Build Settings ###
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+strict: true 
+watch:
+  - docs
+
+### Validation Settings ###
+validation:
+  links:
+    absolute_links: warn
+    unrecognized_links: warn
