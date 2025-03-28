@@ -18,7 +18,7 @@ python-markdown-math>=0.8.0
 fontawesome==4.7.0.post5
 
 # Optional (for diagrams)
-mermaid-filter>=2.0.0
+mkdocs-mermaid2-plugin>=1.0.0
 
 # Development Extras
 mkdocs-redirects>=1.2.0
