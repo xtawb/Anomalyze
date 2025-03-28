@@ -8,7 +8,7 @@ build:
 python:
   install:
     - requirements: docs/requirements.txt
-    - method: pip
+    - method: pip3
       path: .
       extra_requirements: [docs]
 
