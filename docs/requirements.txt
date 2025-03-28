@@ -15,7 +15,7 @@ pymdown-extensions>=10.0.0
 python-markdown-math>=0.8.0
 
 # Theme Extras
-fontawesome==5.10.1
+fontawesome==4.7.0.post5
 
 # Optional (for diagrams)
 mermaid>=10.2.4
