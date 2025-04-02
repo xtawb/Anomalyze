@@ -43,7 +43,7 @@ def print_banner():
     print(f"{Fore.GREEN}Detect anomalous server behaviors and potential vulnerabilities")
     print("through customized HTTP request testing and response analysis")
     print(f"{Style.RESET_ALL}")
-    print(f"{Fore.MAGENTA}Created by: {Fore.RED}xtawb Ghorbandy")
+    print(f"{Fore.MAGENTA}Created by: {Fore.RED}xtawb")
     print(f"{Fore.MAGENTA}->Contact : {Fore.RED}https://linktr.ee/xtawb")
     print(f"{Fore.MAGENTA}->GitHub  : {Fore.RED}https://github.com/xtawb{Style.RESET_ALL}")
     print()
