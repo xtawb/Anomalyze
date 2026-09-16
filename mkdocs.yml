@@ -1,13 +1,14 @@
 # Anomalyze Documentation Configuration
-# Version 1.0 - Mars 2025 (Complete Structure)
+# Version 1.1 - Updated for the 1.1.0 tool release
 
 ### Core Site Configuration ###
 site_name: Anomalyze Documentation
-site_url: https://docs.anomalyze.org
+site_url: https://anomalyze.readthedocs.io/
 site_description: >
-  Advanced anomaly detection system documentation
-site_author: Anomalyze Security Team
-copyright: "Copyright &copy; 2025 Anomalyze Project"
+  Documentation for Anomalyze, a web path discovery and response
+  analysis tool for authorized security testing.
+site_author: xtawb
+copyright: "Copyright &copy; 2025 xtawb"
 
 ### Repository Settings ###
 repo_name: GitHub
@@ -58,19 +59,15 @@ nav:
   - Getting Started:
     - Installation: installation.md
     - Basic Usage: usage.md
-  - Examples:
-    - Basic Examples: examples.md
-    - Advanced Examples: advanced/examples.md
-  - Development:
-    - System Architecture: development/architecture.md
-    - Contributing Guide: development/contributing.md
-    - Code of Conduct: development/CODE_OF_CONDUCT.md
-  - Advanced:
     - Advanced Options: advanced_options.md
+  - Examples: examples.md
   - Output Formats: output.md
+  - Development:
+    - System Architecture: architecture.md
+    - Contributing Guide: contributing.md
+    - Code of Conduct: CODE_OF_CONDUCT.md
   - Support: support.md
   - License: license.md
-  - Code of Conduct: CODE_OF_CONDUCT.md
 ### Plugins Configuration ###
 plugins:
   - search:
@@ -128,16 +125,13 @@ markdown_extensions:
 
 ### Extra Configuration ###
 extra:
-  analytics:
-    provider: google
-    property: UA-XXXXXXXXX-X
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/xtawb/Anomalyze
-    - icon: fontawesome/brands/discord
-      link: https://discord.gg/UMExDCTp9f
+    - icon: fontawesome/solid/link
+      link: https://linktr.ee/xtawb
   security:
-    contact: xxtawb@gmail.com
+    contact: https://github.com/xtawb/Anomalyze/issues
 
 ### Assets Configuration ###
 extra_css:

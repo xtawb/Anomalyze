@@ -11,6 +11,14 @@ pip3 install -r requirements.txt
 ### Verification
 ```bash
 python3 Anomalyze.py --help
+python3 Anomalyze.py --version
+```
+
+### Optional: Development Install
+To also run the test suite, install the dev requirements instead:
+```bash
+pip3 install -r requirements-dev.txt
+pytest tests/ -v
 ```
 
 ## Usage Documentation
@@ -25,11 +33,11 @@ python3 Anomalyze.py -u https://target.site
 #### Scan Configuration
 | Option               | Description                                  | Default |
 |----------------------|----------------------------------------------|---------|
-| `-u, --url`          | Base URL to scan                             | None    |
+| `-u, --url`          | Base URL to scan                             | *required* |
 | `-p, --path`         | Add custom path(s) to scan                   | None    |
 | `--paths-file`       | File containing paths to test                | None    |
-| `--default-paths`    | Enable built-in path dictionary              | False   |
-| `--deep-scan`        | Enable recursive link following              | False   |
+| `--default-paths`    | Enable built-in path dictionary              | Used automatically if no paths given |
+| `--deep-scan`        | Follow links found in responses              | False   |
 | `--max-depth`        | Maximum recursion depth                      | 2       |
 
 #### Request Configuration
@@ -48,10 +56,8 @@ python3 Anomalyze.py -u https://target.site
 | `-t, --threads`      | Number of concurrent threads                 | 10      |
 | `-x, --proxy`        | Proxy server to use                          | None    |
 | `--timeout`          | Request timeout in seconds                   | 15      |
-| `--delay`            | Delay between requests (ms)                  | 0       |
+| `--delay`            | Delay between requests (ms), or `random(min-max)` | 0  |
 
-
-
-<p align="center">
-  <img src="https://i.ibb.co/vC1pFTqf/Anomalyze-help.png" alt="🔗 Terminal Output-1 Image" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); border-radius: 10px;">
-</p>
+The complete list, including `--header-file`, `--proxy-list`,
+`--user-agent-file`, `--min-severity`, `--patterns-file`, and
+`-k/--insecure`, is in [Advanced Options](advanced_options.md).

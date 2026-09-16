@@ -1,0 +1,25 @@
+{
+  "Critical": [
+    ["\\b(password|passwd|pwd|credential)\\b", "🔒 Sensitive Credential"],
+    ["\\b(api[_-]?key|token|secret|auth)\\b", "🔑 API Key"],
+    ["\\bSQL syntax error|unclosed quotation\\b", "⚠️ SQL Error"],
+    ["\\b\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}\\b", "💳 Credit Card"],
+    ["\\b(ssh-rsa|BEGIN RSA PRIVATE KEY)\\b", "🔑 SSH Key"]
+  ],
+  "High": [
+    ["\\b(admin|root|superuser|sysadmin)\\b", "👑 Admin Account"],
+    ["\\b(login|signin|authentication)\\b", "🔐 Auth Endpoint"],
+    ["\\b(ssn|social security number)\\b", "📛 PII Data"],
+    ["\\b(aws_access_key_id|aws_secret_access_key)\\b", "☁️ AWS Credentials"]
+  ],
+  "Medium": [
+    ["\\b(config|settings|env|configuration)\\b", "⚙️ Config File"],
+    ["\\b(backup|archive|dump|sql)\\b", "💾 Backup File"],
+    ["\\b(internal|confidential|restricted)\\b", "📄 Internal Doc"]
+  ],
+  "Low": [
+    ["\\b(server|version|os|platform)\\b", "🖥️ Server Info"],
+    ["\\b(php|asp|jsp|nodejs)\\b", "💻 Tech Stack"],
+    ["\\b(jquery|bootstrap|react)\\b", "📚 Client Library"]
+  ]
+}

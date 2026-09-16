@@ -1,1 +1,15 @@
 site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Scan output
+anomalyze_report_*.json
+anomalyze_report_*.csv
+
+# Test cache
+.pytest_cache/

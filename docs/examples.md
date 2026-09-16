@@ -1,14 +1,13 @@
-<!-- markdownextradata disabled -->
 # Anomalyze Practical Examples 🚀
 
 ## Table of Contents
 1. [Basic Scanning](#basic-scanning)
-2. [Authentication Testing](#authentication-testing)
-3. [API Security](#api-security)
-4. [Stealth Operations](#stealth-operations)
-5. [Bug Bounty Hunting](#bug-bounty-hunting)
-6. [CI/CD Integration](#cicd-integration)
-7. [Advanced Analysis](#advanced-analysis)
+2. [Recursive Discovery](#recursive-discovery)
+3. [Authentication Testing](#authentication-testing)
+4. [API Security](#api-security)
+5. [Stealth Scanning](#stealth-scanning)
+6. [Custom Wordlists and Patterns](#custom-wordlists-and-patterns)
+7. [CI Pipeline Usage](#ci-pipeline-usage)
 
 ---
 
@@ -19,38 +18,48 @@
 python Anomalyze.py -u https://example.com --default-paths -t 20
 ```
 **What it does**:
-- Checks 500+ common paths
-- Uses 20 threads for fast scanning
-- Outputs to console in color-coded format
+- Checks the built-in list of common paths (admin panels, config files, VCS
+  metadata, etc.)
+- Uses 20 threads for faster scanning
+- Prints color-coded results to the console and saves a JSON report
 
-### Full Recursive Crawl
+### Both JSON and CSV Output
+```bash
+python Anomalyze.py -u https://example.com --default-paths -o both
+```
+
+---
+
+## Recursive Discovery
+
 ```bash
 python Anomalyze.py -u https://example.com --deep-scan --max-depth 3
 ```
-**Features**:
-- Follows links up to 3 levels deep
-- Automatically discovers new paths
-- Saves discovered paths to `discovered_paths.txt`
+Follows links discovered in HTML (`<a>`, `<script src>`, `<link href>`) and
+JSON responses, up to 3 hops from the initial path list, staying on the
+scanned host.
 
 ---
 
 ## Authentication Testing
 
-### Admin Panel Discovery
+### Admin Panel Discovery with Spoofed Headers
 ```bash
 python Anomalyze.py -u https://example.com -p /admin -p /wp-admin \
   -H "X-Forwarded-For: 127.0.0.1"
 ```
 
-### Brute Force Protection Testing
+### Authenticated Scan with a Session Cookie
 ```bash
-python Anomalyze.py -u https://example.com/login \
-  --data "username=admin&password=test" \
-  --retry-codes 401:3,302:1
+python Anomalyze.py -u https://example.com \
+  --cookie "session=abc123" --deep-scan
 ```
-**Behavior**:
-- Retries 3 times on 401 responses
-- Retries once on 302 redirects
+
+### Bearer Token Auth
+```bash
+python Anomalyze.py -u https://example.com \
+  -H "Authorization: Bearer token123" --deep-scan
+```
 
 ---
 
@@ -60,113 +69,68 @@ python Anomalyze.py -u https://example.com/login \
 ```bash
 python Anomalyze.py -u https://api.example.com/v1 \
   -H "Accept: application/json" \
-  --api-paths /users,/products,/admin
+  -p /users -p /products -p /admin
 ```
 
-### GraphQL Endpoint Testing
+### POST Requests with a JSON Body
 ```bash
-python Anomalyze.py -u https://api.example.com/graphql \
-  --graphql --query-file queries.gql \
-  --detect-introspection
+python Anomalyze.py -u https://api.example.com/v1 -m POST \
+  --data '{"query":"test"}' --content-type "application/json"
 ```
 
 ---
 
-## Stealth Operations
+## Stealth Scanning
 
-### Slow Rate Scanning
+### Slow, Low-Noise Scan
 ```bash
 python Anomalyze.py -u https://example.com \
-  --delay random(2000-5000) \
-  --throttle 5:30s
+  -t 1 --delay "random(2000-5000)"
 ```
-**Stealth Features**:
-- Random delays between 2-5 seconds
-- Pauses for 30s after every 5 requests
+Single-threaded with a random 2-5 second delay between requests.
 
-### Proxy Chain Rotation
+### Self-Signed Certificates in a Lab Environment
 ```bash
-python Anomalyze.py -u https://example.com \
-  --proxy-rotation 10:3 \
-  --proxy-list proxies.txt
+python Anomalyze.py -u https://internal-lab.local --insecure
 ```
 
 ---
 
-## Bug Bounty Hunting
+## Custom Wordlists and Patterns
 
-### Sensitive Data Discovery
+### Paths From a File
 ```bash
-python Anomalyze.py -u https://example.com \
-  --sensitive-data-scan \
-  --custom-patterns bounty_patterns.json
+python Anomalyze.py -u https://example.com --paths-file wordlists/common.txt
 ```
 
-### Subdomain Enumeration Combo
+### Custom Sensitive-Data Patterns
 ```bash
-subfinder -d example.com | python Anomalyze.py --stdin-mode \
-  --quick-scan -o findings.json
+python Anomalyze.py -u https://example.com \
+  --patterns-file bounty_patterns.json --min-severity High
 ```
 
 ---
 
-## CI/CD Integration
+## CI Pipeline Usage
 
-### Jenkins Pipeline Integration
-```groovy
-stage('Security Scan') {
-    steps {
-        sh 'python Anomalyze.py -u ${WEBSITE_URL} -o json > scan.json'
-        archiveArtifacts 'scan.json'
-    }
-}
-```
-
-### GitHub Actions Workflow
+### GitHub Actions
 ```yaml
 - name: Run Anomalyze Scan
   run: |
-    python Anomalyze.py -u "https://example.com" \
-      --output-format sarif \
-      --output-file scan.sarif
+    pip install -r requirements.txt
+    python Anomalyze.py -u "$TARGET_URL" --default-paths -o json
+- name: Upload report
+  uses: actions/upload-artifact@v4
+  with:
+    name: anomalyze-report
+    path: anomalyze_report_*.json
 ```
 
----
-
-## Advanced Analysis
-
-### Compare Two Scans
+### Piping JSON to jq
 ```bash
-python utils/scan_diff.py old_scan.json new_scan.json
+python Anomalyze.py -u https://example.com --default-paths -o json
+jq '.[] | select(.severity == "Critical")' anomalyze_report_*.json
 ```
 
-### Visualize Results
-```bash
-python Anomalyze.py -u https://example.com -o json \
-  | python utils/visualizer.py --html report.html
-```
-
----
-
-## Pro Tips 💡
-
-1. **Combine with Nuclei**:
-   ```bash
-   python Anomalyze.py -u https://example.com --discovered-urls \
-     | nuclei -t ~/nuclei-templates/
-   ```
-
-2. **Monitor for Changes**:
-   ```bash
-   watch -n 3600 "python Anomalyze.py -u https://example.com \
-     --compare-with baseline.json"
-   ```
-
-3. **Target Specific Tech**:
-   ```bash
-   python Anomalyze.py -u https://example.com \
-     --tech-detect wordpress --wp-scan-mode
-   ```
-
-> **Note**: Always obtain proper authorization before scanning.  
-> **Tip**: Use `--dry-run` to test configurations without sending actual requests.
+> **Note**: Always obtain proper authorization before scanning a target you
+> don't own or control.
